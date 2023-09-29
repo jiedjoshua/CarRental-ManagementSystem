@@ -1,36 +1,25 @@
 
 package carrentalproject;
 
+import Userlogin.UserLogin;
+import databasecon.connection;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 public class login extends javax.swing.JFrame {
+    
+    private final connection dbConnection;
+    private final UserLogin userlogin;
 
-    /**
-     * Creates new form login
-     */
     public login() {
+        
         initComponents();
-        Connect();
+        dbConnection = new connection();
+        Connection con = dbConnection.connect();
+        userlogin = new UserLogin(con);
     }
-
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
     
-    
-public void Connect(){
-    
-        try {
-        Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost/carrentaldb","root","");
-        System.out.println("Database connection established successfully!");
-    } catch (ClassNotFoundException | SQLException ex) {
-        Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Error connecting to the database: " + ex.getMessage());
-    }
-}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,8 +35,8 @@ public void Connect(){
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        loginBt = new javax.swing.JToggleButton();
+        loginBt1 = new javax.swing.JToggleButton();
+        regBt = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,18 +136,23 @@ public void Connect(){
         jPanel7.setBackground(new java.awt.Color(232, 232, 232));
         jPanel7.setPreferredSize(new java.awt.Dimension(350, 100));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Dont have an account yet? Sign up.");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        loginBt.setBackground(new java.awt.Color(204, 204, 204));
-        loginBt.setForeground(new java.awt.Color(51, 51, 51));
-        loginBt.setText("Login");
-        loginBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginBt.addActionListener(new java.awt.event.ActionListener() {
+        loginBt1.setBackground(new java.awt.Color(204, 204, 204));
+        loginBt1.setForeground(new java.awt.Color(51, 51, 51));
+        loginBt1.setText("Login");
+        loginBt1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtActionPerformed(evt);
+                loginBt1ActionPerformed(evt);
+            }
+        });
+
+        regBt.setBackground(new java.awt.Color(204, 204, 204));
+        regBt.setForeground(new java.awt.Color(51, 51, 51));
+        regBt.setText("Register");
+        regBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        regBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regBtActionPerformed(evt);
             }
         });
 
@@ -167,22 +161,19 @@ public void Connect(){
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(loginBt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(regBt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginBt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addComponent(loginBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(regBt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel7);
@@ -207,38 +198,29 @@ public void Connect(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private registration registrationWindow = null;
+    
+    private void regBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtActionPerformed
+         if (registrationWindow == null || !registrationWindow.isVisible()) {
+        registrationWindow = new registration();
+        registrationWindow.setVisible(true);
+    } else {
+        registrationWindow.toFront(); 
+    }
+       
+    }//GEN-LAST:event_regBtActionPerformed
 
-    private void loginBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtActionPerformed
-        
+    private void loginBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBt1ActionPerformed
         String user = txtUsername.getText();
         String pwd = new String(txtPassword.getPassword());
-        
-        try {
-            
-            pst = con.prepareStatement("SELECT * FROM usertable");
-            
-            rs = pst.executeQuery();
-
-            
-            while(rs.next()){
-                
-                String uname = rs.getString("username");
-                String password = rs.getString("password");
-                
-                if((user.equals(uname)) && (pwd.equals(password))){
-                
-                    new dashboard().setVisible(true);
-                    this.setVisible(false);
-                    
-               } else{
-                   JOptionPane.showMessageDialog(this, "Username or password is incorrect!");
-                }
-            }
-                
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+      
+        if(userlogin.validateLogin(user, pwd)){
+            new dashboard().setVisible(true);
+            this.setVisible(false);
+        } else{
+            JOptionPane.showMessageDialog(this,"Username or password is incorrect!");
         }
-    }//GEN-LAST:event_loginBtActionPerformed
+    }//GEN-LAST:event_loginBt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,14 +261,14 @@ public void Connect(){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JToggleButton loginBt;
+    private javax.swing.JToggleButton loginBt1;
+    private javax.swing.JToggleButton regBt;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
