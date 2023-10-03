@@ -16,16 +16,29 @@ public class newUser {
     
 
     public newUser(String fname, String lname, String mNum, String username, String pwd) {
+        
         this.fname = fname;
         this.lname = lname;
         this.mNum = mNum;
         this.username = username;
         this.pwd = pwd;
     }
+    
+    private void validateAndShowError(String value, String fieldName) {
+        if (value == null || value.isEmpty()) {
+            JOptionPane.showMessageDialog(null, fieldName + " cannot be null or empty", "Error", JOptionPane.ERROR_MESSAGE);
+            throw new IllegalArgumentException(fieldName + " cannot be null or empty");
+        }
+    }
   
     
  public void addUser(){
-    
+     validateAndShowError( fname, "First name");
+     validateAndShowError( lname, "Last name");
+     validateAndShowError( username, "Username");
+     validateAndShowError( pwd, "Password");
+
+       
      try{
        
          Statement s = db.connect().createStatement();
