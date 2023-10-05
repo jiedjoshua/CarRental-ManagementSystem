@@ -4,6 +4,8 @@ package UserLogin;
 import java.sql.Statement;
 import databasecon.connection;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+
 
 public class newUser {
     private String fname;
@@ -39,18 +41,16 @@ public class newUser {
      validateAndShowError( pwd, "Password");
 
        
-     try{
-       
-         Statement s = db.connect().createStatement();
-         s.executeUpdate(" INSERT INTO usertable (username, password) VALUES ('"+username+"','"+pwd+"')");
-         s.executeUpdate(" INSERT INTO userinfo (fname, lname, mNum) VALUES ('"+fname+"','"+lname+"','"+mNum+"')");
-         
-      JOptionPane.showMessageDialog(null, "Your account has been created!");
-        
-         
-     }catch(Exception e){
-         System.out.println(e);
-     }
+     try {
+        Statement s = db.connect().createStatement();
+        s.executeUpdate("INSERT INTO usertable (username, password) VALUES ('" + username + "','" + pwd + "')");
+        s.executeUpdate("INSERT INTO userinfo (fname, lname, mNum, username) VALUES ('" + fname + "','" + lname + "','" + mNum + "','" + username + "')");
+
+        JOptionPane.showMessageDialog(null, "Your account has been created!");
+
+    } catch (Exception e) {
+        System.out.println(e);
+    }
  }
  
  public boolean numCounter(String mNum){
@@ -83,6 +83,10 @@ public class newUser {
         return false;
     }
 }
+ 
+ 
+ 
+
 
     
     

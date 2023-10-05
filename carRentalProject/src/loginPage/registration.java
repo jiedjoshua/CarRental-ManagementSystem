@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package carrentalproject;
+package loginPage;
 
 import UserLogin.newUser;
+import carrentalproject.KGradientPanel;
 import databasecon.connection;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +16,6 @@ public class registration extends javax.swing.JFrame {
     
     private final connection dbConnection;
     private newUser user;
-
 
     
     public registration() {
@@ -243,14 +243,16 @@ public class registration extends javax.swing.JFrame {
     }//GEN-LAST:event_licNumActionPerformed
 
     private void createAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccActionPerformed
-        user = new newUser(fName.getText(),lName.getText(),licNum.getText(),newUname.getText(),newPwd.getText());
+        user = new newUser(fName.getText(),lName.getText(),mNumber1.getText(),newUname.getText(),newPwd.getText());
         
-        if (user.isStringInt(licNum.getText()) && user.numCounter(licNum.getText()))
+        if (user.isStringInt(mNumber1.getText()) && user.numCounter(mNumber1.getText()))
 
         {
             
         user.addUser();
+        this.setVisible(false);
         
+  
         }
         
         else{

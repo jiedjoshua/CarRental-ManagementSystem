@@ -7,6 +7,7 @@ package rentAcar;
 import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
+import rentAcarLibs.BrandComparator;
 import rentAcarLibs.table;
 
 
@@ -278,7 +279,7 @@ public class rentAcar extends javax.swing.JFrame  {
         
         s.setVisible(true);
         this.setVisible(false);
-        t.tablePopulator();
+        t.tablePopulator(new BrandComparator(), null);
         
         
     }//GEN-LAST:event_sedanconMousePressed
