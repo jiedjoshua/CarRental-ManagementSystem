@@ -1,7 +1,9 @@
 
-package carrentalproject;
+package loginPage;
 
 import Userlogin.UserLogin;
+import carrentalproject.KGradientPanel;
+import carrentalproject.dashboard;
 import databasecon.connection;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,11 +11,13 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import loginPage.registration;
 public class login extends javax.swing.JFrame {
     
     private final connection dbConnection;
     private final UserLogin userlogin;
     registration reg = new registration();
+    dashboard dh = new dashboard();
     public login() {
         
         initComponents();
@@ -25,11 +29,7 @@ public class login extends javax.swing.JFrame {
         jPanel1.add(gradientPanel);
         
         Color customColor = Color.decode("#9517E3");
-      
-    
-        
-
-        
+     
         gradientPanel.setkStartColor(customColor);
         gradientPanel.setkEndColor(Color.white);
         jPanel1.setLayout(new BorderLayout());
@@ -240,8 +240,12 @@ public class login extends javax.swing.JFrame {
         String pwd = new String(txtPassword.getPassword());
       
         if(userlogin.validateLogin(user, pwd)){
-            new dashboard().setVisible(true);
+            String temp = userlogin.getUserFullName(user, pwd);
+            dh.getjLabel1().setText(temp);
+            dh.setVisible(true);
             this.setVisible(false);
+            
+            
         } else{
             JOptionPane.showMessageDialog(this,"Username or password is incorrect!");
         }
