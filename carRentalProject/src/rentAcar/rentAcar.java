@@ -9,6 +9,7 @@ import databasecon.connection;
 import java.sql.Connection;
 import rentAcarLibs.BrandComparator;
 import rentAcarLibs.table;
+import rentAcarLibs.tablesuv;
 
 
 /**
@@ -21,6 +22,8 @@ public class rentAcar extends javax.swing.JFrame  {
     private final connection dbConnection;
     private final sedan s;
     private final table t;
+    private final tablesuv suv;
+    private final suv suvcar;
     
     public rentAcar() {
         
@@ -29,8 +32,10 @@ public class rentAcar extends javax.swing.JFrame  {
         dbConnection = new connection();
         Connection con = dbConnection.connect();
         s = new sedan();
+        suvcar = new suv();
         
         t = new table(con,s);
+        suv = new tablesuv(con,suvcar);
         
         
         
@@ -227,6 +232,11 @@ public class rentAcar extends javax.swing.JFrame  {
 
         jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/suvcon.png"))); // NOI18N
         jLabel51.setText("jLabel51");
+        jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel51MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -284,6 +294,13 @@ public class rentAcar extends javax.swing.JFrame  {
         
     }//GEN-LAST:event_sedanconMousePressed
 
+    private void jLabel51MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel51MousePressed
+        // TODO add your handling code here:
+        suvcar.setVisible(true);
+        this.setVisible(false);
+        suv.tablePopulator(new BrandComparator(), null);
+    }//GEN-LAST:event_jLabel51MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -339,7 +356,5 @@ public class rentAcar extends javax.swing.JFrame  {
     private javax.swing.JLabel sedancon;
     // End of variables declaration//GEN-END:variables
 
-    private void tablePopulator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

@@ -5,23 +5,20 @@
 package rentAcar;
 
 import UserLogin.Session;
-import Userlogin.UserLogin;
 import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import rentAcarLibs.rentSedan;
-import rentAcarLibs.sortSedan;
-
+import rentAcarLibs.rentSuv;
+import rentAcarLibs.sortSuv;
 /**
  *
  * @author HP
  */
-public class rentNow extends javax.swing.JFrame {
+public class rentNowSuv extends javax.swing.JFrame {
 
     private final connection dbConnection;
-    
-    public rentNow() {
+    public rentNowSuv() {
         initComponents();
         dbConnection = new connection();
     }
@@ -74,9 +71,6 @@ public class rentNow extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(912, 523));
-        setMinimumSize(new java.awt.Dimension(912, 523));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,7 +78,6 @@ public class rentNow extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(153, 0, 255));
         jPanel8.setMaximumSize(new java.awt.Dimension(100, 500));
         jPanel8.setMinimumSize(new java.awt.Dimension(100, 500));
-        jPanel8.setPreferredSize(new java.awt.Dimension(100, 500));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
@@ -235,7 +228,7 @@ public class rentNow extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Model");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Brand", "Toyota", "Mitsubishi", "Honda" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Brand", "Ford", "Mitsubishi", "Nissan", "Toyota" }));
         jComboBox1.setMaximumSize(new java.awt.Dimension(88, 22));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,14 +451,14 @@ public class rentNow extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(177, 177, 177)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,79 +469,6 @@ public class rentNow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String selectedBrand = (String) jComboBox1.getSelectedItem();
-        
-        Connection con = dbConnection.connect();
-        
-        sortSedan rc = new sortSedan(con,jComboBox2,selectedBrand);
-        
-        rc.sortBrand();
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        String selectedModel = (String) jComboBox2.getSelectedItem();
-        
-        Connection con = dbConnection.connect();
-        
-        sortSedan rc = new sortSedan(con,jComboBox3,selectedModel);
-        
-        rc.sortTransmission();
-        
-        
-        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-      
-    
-        Connection con = dbConnection.connect();
-        String username = Session.getUsername();
-        String selectedBrand = (String) jComboBox1.getSelectedItem();
-        String selectedModel = (String) jComboBox2.getSelectedItem();
-        String selectedTransmission = (String) jComboBox3.getSelectedItem();
-        String selectedSMonth = (String) startMonthCB.getSelectedItem();
-        String selectedSDay = (String) startDayCB.getSelectedItem();
-        String selectedSYear = (String) startYearCB.getSelectedItem();
-        String selectedEMonth = (String) endMonthCB.getSelectedItem();
-        String selectedEDay = (String) endDayCB.getSelectedItem();
-        String selectedEYear = (String) endYearCB.getSelectedItem();
-        
-        
-        System.out.println(username);
-        
-        rentSedan rn = new rentSedan(username,selectedBrand,selectedModel,selectedTransmission,selectedSMonth,selectedSDay,selectedSYear,selectedEMonth,selectedEDay,selectedEYear);
-        
-        if(rn.checkRentedCars() == true){
-            JOptionPane.showMessageDialog(null, "Car is not available!");
-        }
-        else {
-            rn.rentNow();
-            this.setVisible(false);
-        } 
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void startYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startYearCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startYearCBActionPerformed
-
-    private void endYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endYearCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endYearCBActionPerformed
-
-    private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
-        // TODO add your handling code here:
-        new rentAcar().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel47MousePressed
 
     private void jLabel42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MousePressed
         // TODO add your handling code here:
@@ -568,6 +488,75 @@ public class rentNow extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel46MousePressed
 
+    private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
+        // TODO add your handling code here:
+        new rentAcar().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel47MousePressed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String selectedBrand = (String) jComboBox1.getSelectedItem();
+
+        Connection con = dbConnection.connect();
+
+        sortSuv rc = new sortSuv(con,jComboBox2,selectedBrand);
+
+        rc.sortBrand();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        String selectedModel = (String) jComboBox2.getSelectedItem();
+
+        Connection con = dbConnection.connect();
+
+        sortSuv rc = new sortSuv(con,jComboBox3,selectedModel);
+
+        rc.sortTransmission();
+
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void startYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startYearCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startYearCBActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+
+        Connection con = dbConnection.connect();
+        String username = Session.getUsername();
+        String selectedBrand = (String) jComboBox1.getSelectedItem();
+        String selectedModel = (String) jComboBox2.getSelectedItem();
+        String selectedTransmission = (String) jComboBox3.getSelectedItem();
+        String selectedSMonth = (String) startMonthCB.getSelectedItem();
+        String selectedSDay = (String) startDayCB.getSelectedItem();
+        String selectedSYear = (String) startYearCB.getSelectedItem();
+        String selectedEMonth = (String) endMonthCB.getSelectedItem();
+        String selectedEDay = (String) endDayCB.getSelectedItem();
+        String selectedEYear = (String) endYearCB.getSelectedItem();
+
+        System.out.println(username);
+
+        rentSuv rn = new rentSuv(username,selectedBrand,selectedModel,selectedTransmission,selectedSMonth,selectedSDay,selectedSYear,selectedEMonth,selectedEDay,selectedEYear);
+
+        if(rn.checkRentedCars() == true){
+            JOptionPane.showMessageDialog(null, "Car is not available!");
+        }
+        else {
+            rn.rentNow();
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void endYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endYearCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endYearCBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -585,20 +574,20 @@ public class rentNow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(rentNow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rentNowSuv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(rentNow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rentNowSuv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(rentNow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rentNowSuv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(rentNow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rentNowSuv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new rentNow().setVisible(true);
+                new rentNowSuv().setVisible(true);
             }
         });
     }
