@@ -1,6 +1,7 @@
 
 package loginPage;
 
+import UserLogin.Session;
 import Userlogin.UserLogin;
 import carrentalproject.KGradientPanel;
 import carrentalproject.dashboard;
@@ -241,6 +242,8 @@ public class login extends javax.swing.JFrame {
       
         if(userlogin.validateLogin(user, pwd)){
             String temp = userlogin.getUserFullName(user, pwd);
+            Session.setUsername(temp);
+            System.out.println(Session.getUsername());
             dh.getjLabel1().setText(temp);
             dh.setVisible(true);
             this.setVisible(false);

@@ -4,36 +4,26 @@
  */
 package rentAcar;
 
-
-
 import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
-import javax.swing.JButton;
+import java.util.Set;
 import javax.swing.JTable;
 import rentAcarLibs.BrandComparator;
-import rentAcarLibs.table;
+import rentAcarLibs.tablesuv;
 
 /**
  *
  * @author HP
  */
-public class sedan extends javax.swing.JFrame {
+public class suv extends javax.swing.JFrame {
 
     private final connection dbConnection;
-  
-    rentNow r = new rentNow();
-    public sedan() {
+    rentNowSuv r = new rentNowSuv();
+    public suv() {
         initComponents();
         dbConnection = new connection();
         Connection con = dbConnection.connect();
-        table t = new table(con, this);
-        
-       
-        
-       
-        
-        
     }
 
     /**
@@ -46,7 +36,6 @@ public class sedan extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
@@ -61,21 +50,24 @@ public class sedan extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        sedantable = new javax.swing.JTable();
+        suvtable = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 550));
         setMinimumSize(new java.awt.Dimension(900, 540));
         setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jPanel2.setBackground(new java.awt.Color(234, 234, 234));
-        jPanel2.setForeground(new java.awt.Color(221, 217, 217));
-        jPanel2.setMaximumSize(new java.awt.Dimension(900, 520));
-        jPanel2.setMinimumSize(new java.awt.Dimension(900, 550));
-        jPanel2.setPreferredSize(new java.awt.Dimension(900, 500));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
+        jPanel1.setMinimumSize(new java.awt.Dimension(900, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(900, 500));
 
         jPanel8.setBackground(new java.awt.Color(153, 0, 255));
+        jPanel8.setMaximumSize(new java.awt.Dimension(100, 500));
+        jPanel8.setMinimumSize(new java.awt.Dimension(100, 500));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 500));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -205,7 +197,7 @@ public class sedan extends javax.swing.JFrame {
                 .addComponent(jLabel42)
                 .addGap(7, 7, 7)
                 .addComponent(jSeparator23, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jLabel45)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel48)
@@ -215,10 +207,10 @@ public class sedan extends javax.swing.JFrame {
         jLabel49.setBackground(new java.awt.Color(30, 32, 33));
         jLabel49.setFont(new java.awt.Font("Impact", 0, 28)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel49.setText("Sedan");
+        jLabel49.setText("SUV");
 
-        sedantable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sedantable.setModel(new javax.swing.table.DefaultTableModel(
+        suvtable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        suvtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -237,14 +229,11 @@ public class sedan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        sedantable.setEnabled(false);
-        sedantable.setRowHeight(25);
-        jScrollPane1.setViewportView(sedantable);
-        if (sedantable.getColumnModel().getColumnCount() > 0) {
-            sedantable.getColumnModel().getColumn(4).setPreferredWidth(50);
-        }
+        suvtable.setEnabled(false);
+        suvtable.setRowHeight(25);
+        jScrollPane1.setViewportView(suvtable);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Available", "Toyota", "Mitsubishi", "Honda" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Available", "Ford", "Mitsubishi", "Nissan", "Toyota" }));
         jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,91 +256,67 @@ public class sedan extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(486, 486, 486)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jToggleButton2.setBackground(new java.awt.Color(51, 102, 0));
+        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jToggleButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleButton2.setText("Rent now");
+        jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton2MouseClicked(evt);
+            }
+        });
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 49, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(391, 391, 391)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(415, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(239, 239, 239)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(228, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-                                                 
-    String selectedBrand = (String) jComboBox1.getSelectedItem();
- 
-    Connection con = dbConnection.connect();  
-    table t = new table(con, this);
-    
-    BrandComparator bc = new BrandComparator();
-
-    if(selectedBrand == "Default"){
-        selectedBrand = null;
-    }
-    
-    t.tablePopulator(bc, selectedBrand);
-        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        // TODO add your handling code here:
-        r.setVisible(true);
-        
-    }//GEN-LAST:event_jToggleButton1MouseClicked
-
-    private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
-        // TODO add your handling code here:
-        new rentAcar().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel47MousePressed
 
     private void jLabel42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MousePressed
         // TODO add your handling code here:
@@ -371,15 +336,49 @@ public class sedan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel46MousePressed
 
-     
-  
+    private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
+        // TODO add your handling code here:
+        new rentAcar().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel47MousePressed
 
-      
-
-      
-
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    String selectedBrand = (String) jComboBox1.getSelectedItem();
+ 
+    Connection con = dbConnection.connect();  
+    tablesuv t = new tablesuv(con, this);
     
+    BrandComparator bc = new BrandComparator();
+
+    if(selectedBrand == "Default"){
+        selectedBrand = null;
+    }
     
+    t.tablePopulator(bc, selectedBrand);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+        r.setVisible(true);
+
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
+        // TODO add your handling code here:
+        r.setVisible(true);
+        
+    }//GEN-LAST:event_jToggleButton2MouseClicked
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -397,20 +396,20 @@ public class sedan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(sedan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(sedan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(sedan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(sedan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new sedan().setVisible(true);
+                new suv().setVisible(true);
             }
         });
     }
@@ -427,19 +426,17 @@ public class sedan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator22;
     private javax.swing.JSeparator jSeparator23;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JTable sedantable;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JTable suvtable;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getSedantable() {
-        return sedantable;
+    public JTable getSuvtable() {
+        return suvtable;
     }
-
-   
 }
