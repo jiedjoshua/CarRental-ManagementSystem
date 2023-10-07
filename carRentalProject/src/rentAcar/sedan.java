@@ -9,7 +9,6 @@ package rentAcar;
 import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
-import javax.swing.JButton;
 import javax.swing.JTable;
 import rentAcarLibs.BrandComparator;
 import rentAcarLibs.table;
@@ -64,18 +63,21 @@ public class sedan extends javax.swing.JFrame {
         sedantable = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
+        startMonthCB = new javax.swing.JComboBox<>();
+        startDayCB = new javax.swing.JComboBox<>();
+        startYearCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 540));
         setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jPanel2.setBackground(new java.awt.Color(234, 234, 234));
+        jPanel2.setBackground(new java.awt.Color(234, 251, 255));
         jPanel2.setForeground(new java.awt.Color(221, 217, 217));
         jPanel2.setMaximumSize(new java.awt.Dimension(900, 520));
         jPanel2.setMinimumSize(new java.awt.Dimension(900, 550));
         jPanel2.setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jPanel8.setBackground(new java.awt.Color(153, 0, 255));
+        jPanel8.setBackground(new java.awt.Color(0, 102, 102));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 500));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -220,17 +222,17 @@ public class sedan extends javax.swing.JFrame {
         sedantable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sedantable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Brand", "Model", "Color", "Type", "Transmission", "Price", "Availability"
+                "Brand", "Model", "Color", "Transmission", "Price", "Availability"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -241,7 +243,7 @@ public class sedan extends javax.swing.JFrame {
         sedantable.setRowHeight(25);
         jScrollPane1.setViewportView(sedantable);
         if (sedantable.getColumnModel().getColumnCount() > 0) {
-            sedantable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            sedantable.getColumnModel().getColumn(3).setPreferredWidth(50);
         }
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Available", "Toyota", "Mitsubishi", "Honda" }));
@@ -267,6 +269,30 @@ public class sedan extends javax.swing.JFrame {
             }
         });
 
+        startMonthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January\t", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        startMonthCB.setMaximumSize(new java.awt.Dimension(92, 22));
+        startMonthCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startMonthCBActionPerformed(evt);
+            }
+        });
+
+        startDayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
+        startDayCB.setMaximumSize(new java.awt.Dimension(72, 22));
+        startDayCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDayCBActionPerformed(evt);
+            }
+        });
+
+        startYearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024" }));
+        startYearCB.setMaximumSize(new java.awt.Dimension(72, 22));
+        startYearCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startYearCBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -274,23 +300,32 @@ public class sedan extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(486, 486, 486)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(startMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(startDayCB, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(startYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startDayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -327,13 +362,16 @@ public class sedan extends javax.swing.JFrame {
     Connection con = dbConnection.connect();  
     table t = new table(con, this);
     
-    BrandComparator bc = new BrandComparator();
+   
 
     if(selectedBrand == "Default"){
+        
         selectedBrand = null;
+        
     }
     
-    t.tablePopulator(bc, selectedBrand);
+    
+       t.sortBrand(selectedBrand);
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -344,6 +382,7 @@ public class sedan extends javax.swing.JFrame {
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
         r.setVisible(true);
+       
         
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
@@ -371,12 +410,32 @@ public class sedan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel46MousePressed
 
-     
-  
+    private void startYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startYearCBActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_startYearCBActionPerformed
 
-      
+    private void startMonthCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startMonthCBActionPerformed
+        // TODO add your handling code here:
+    
+    String selectedMonth = (String) jComboBox1.getSelectedItem();
+    Connection con = dbConnection.connect();  
+    table t = new table(con, this);
+    
+    
+    
+    
+    t.filterDate(selectedMonth, "1", "2023");
+        
+        
+         
+        
+    }//GEN-LAST:event_startMonthCBActionPerformed
 
-      
+    private void startDayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDayCBActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_startDayCBActionPerformed
 
     
     
@@ -435,11 +494,13 @@ public class sedan extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator23;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable sedantable;
+    private javax.swing.JComboBox<String> startDayCB;
+    private javax.swing.JComboBox<String> startMonthCB;
+    private javax.swing.JComboBox<String> startYearCB;
     // End of variables declaration//GEN-END:variables
 
     public JTable getSedantable() {
         return sedantable;
     }
-
-   
+    
 }

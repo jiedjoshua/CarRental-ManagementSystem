@@ -44,6 +44,7 @@ public class UserLogin {
                     this.password = uname;
                     return true;
                 }
+                
             }
             JOptionPane.showMessageDialog(null, "Username or password is incorrect!");
         } catch (SQLException ex) {

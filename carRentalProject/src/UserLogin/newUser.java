@@ -13,17 +13,19 @@ public class newUser {
     private String mNum;
     private String username;
     private String pwd;
+    private String licno;
     private connection db;
     
     
 
-    public newUser(String fname, String lname, String mNum, String username, String pwd) {
+    public newUser(String fname, String lname, String mNum, String username, String pwd, String licno) {
         
         this.fname = fname;
         this.lname = lname;
         this.mNum = mNum;
         this.username = username;
         this.pwd = pwd;
+        this.licno = licno;
     }
     
     private void validateAndShowError(String value, String fieldName) {
@@ -39,12 +41,13 @@ public class newUser {
      validateAndShowError( lname, "Last name");
      validateAndShowError( username, "Username");
      validateAndShowError( pwd, "Password");
+     validateAndShowError( licno, "Password");
 
        
      try {
         Statement s = db.connect().createStatement();
         s.executeUpdate("INSERT INTO usertable (username, password) VALUES ('" + username + "','" + pwd + "')");
-        s.executeUpdate("INSERT INTO userinfo (fname, lname, mNum, username) VALUES ('" + fname + "','" + lname + "','" + mNum + "','" + username + "')");
+        s.executeUpdate("INSERT INTO userinfo (fname, lname, mNum, username, licno) VALUES ('" + fname + "','" + lname + "','" + mNum + "','" + username + "'," + licno + "')");
 
         JOptionPane.showMessageDialog(null, "Your account has been created!");
 

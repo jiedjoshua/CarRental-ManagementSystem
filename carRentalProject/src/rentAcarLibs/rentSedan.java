@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,10 +23,13 @@ public class rentSedan extends acceptRent {
     @Override
     public void rentNow() {
          try (Connection connection = con.connect()) {
-        String insertSql = "INSERT INTO rentedcars (username, brand, model, transmission, month, day, year, endmonth, endday, endyear) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSql = "INSERT INTO rentedcars (username, brand, model, transmission, month, day, year, endmonth, endday, endyear, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String updateAvailabilitySql = "UPDATE sedan SET availability = 'Not Available' WHERE brand = ? AND model = ? AND transmission = ?";
         
         // Insert rental record
+        
+        int total = totalAmount();
+        
         PreparedStatement insertStatement = connection.prepareStatement(insertSql);
         insertStatement.setString(1, username);
         insertStatement.setString(2, brand);
@@ -37,6 +41,8 @@ public class rentSedan extends acceptRent {
         insertStatement.setString(8, emonth);
         insertStatement.setString(9, eday);
         insertStatement.setString(10, eyear);
+        insertStatement.setInt(11, total);
+        
         
         int rowsAffected = insertStatement.executeUpdate();
         
@@ -92,6 +98,35 @@ public class rentSedan extends acceptRent {
         JOptionPane.showMessageDialog(null, "Error occurred while checking the rented cars. Please try again later.");
         return false; // Return false in case of an error
     }
+  }
+    
+    
+  public int totalAmount(){
+      
+     int totalDays = Integer.parseInt(sday) + Integer.parseInt(eday);
+     totalDays = totalDays - 1;
+     try {
+        Connection connection = con.connect();
+        String sql ="SELECT price FROM sedan WHERE brand = ? AND model = ? AND transmission = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, brand);
+        preparedStatement.setString(2, model);
+        preparedStatement.setString(3, transmission);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            int price = resultSet.getInt("price");
+            int totalPrice = price * totalDays;
+            return totalPrice;
+        } else {
+            System.out.println("Car not found in the database.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle the exception appropriately in your application
+    } 
+    
+     
+     return 0;
   }
     
 }

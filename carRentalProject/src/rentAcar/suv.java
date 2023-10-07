@@ -58,7 +58,6 @@ public class suv extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 550));
         setMinimumSize(new java.awt.Dimension(900, 540));
-        setPreferredSize(new java.awt.Dimension(900, 500));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -349,13 +348,9 @@ public class suv extends javax.swing.JFrame {
     Connection con = dbConnection.connect();  
     tablesuv t = new tablesuv(con, this);
     
-    BrandComparator bc = new BrandComparator();
-
-    if(selectedBrand == "Default"){
-        selectedBrand = null;
-    }
+   
     
-    t.tablePopulator(bc, selectedBrand);
+    t.tablePopulator(selectedBrand);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked

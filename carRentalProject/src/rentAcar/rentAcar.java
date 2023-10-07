@@ -85,7 +85,7 @@ public class rentAcar extends javax.swing.JFrame  {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(234, 234, 234));
+        jPanel1.setBackground(new java.awt.Color(237, 237, 237));
         jPanel1.setForeground(new java.awt.Color(221, 217, 217));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 500));
 
@@ -289,7 +289,7 @@ public class rentAcar extends javax.swing.JFrame  {
         
         s.setVisible(true);
         this.setVisible(false);
-        t.tablePopulator(new BrandComparator(), null);
+        t.sortBrand( null);
         
         
     }//GEN-LAST:event_sedanconMousePressed
@@ -298,7 +298,7 @@ public class rentAcar extends javax.swing.JFrame  {
         // TODO add your handling code here:
         suvcar.setVisible(true);
         this.setVisible(false);
-        suv.tablePopulator(new BrandComparator(), null);
+        suv.tablePopulator (null);
     }//GEN-LAST:event_jLabel51MousePressed
 
     /**
