@@ -6,25 +6,20 @@ import Userlogin.UserLogin;
 import adminlibs.dashboardUpdate;
 import carrentalproject.adminDash;
 import carrentalproject.dashboard;
-import databasecon.connection;
 import java.awt.Color;
-import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
     
-    private final connection dbConnection;
-    private final UserLogin userlogin;
-    dashboard dh = new dashboard();
-    adminDash ad = new adminDash();
+        
+       dashboard dh = new dashboard();
+       adminDash ad = new adminDash();
+        
+        
     public login() {
         
         initComponents();
-        dbConnection = new connection();
-        Connection con = dbConnection.connect();
-        userlogin = new UserLogin(con);
-        
-
+    
     }
    
     
@@ -46,6 +41,7 @@ public class login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(880, 510));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -174,7 +170,7 @@ public class login extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -194,7 +190,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
 
         bgpanel.setBackground(new java.awt.Color(255, 255, 255));
-        bgpanel.setPreferredSize(new java.awt.Dimension(500, 470));
+        bgpanel.setPreferredSize(new java.awt.Dimension(880, 520));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/bg3.jpg"))); // NOI18N
@@ -204,52 +200,50 @@ public class login extends javax.swing.JFrame {
         bgpanelLayout.setHorizontalGroup(
             bgpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgpanelLayout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 499, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bgpanelLayout.setVerticalGroup(
             bgpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgpanelLayout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         getContentPane().add(bgpanel, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     
    
     
     private void loginBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBt1ActionPerformed
+        
+        
+        
         String user = txtUsername.getText();
         String pwd = new String(txtPassword.getPassword());
+        
+        UserLogin userlogin = new UserLogin(user,pwd);
+        
+        
      
         if (user.equals("admin") && pwd.equals("admin")){
             
-            Connection con = dbConnection.connect();  
-            
-            dashboardUpdate du = new dashboardUpdate(con,ad);
-            du.usersCount();
-            du.rentedCarsCount();
-            du.totalEarnings();
-            
             
             ad.setVisible(true);
-            this.setVisible(false);
-            
+            this.dispose();
             
     
         } 
         
-        else if(userlogin.validateLogin(user, pwd)){
+        else if(userlogin.validateUser()){
             String temp = userlogin.getUserFullName(user, pwd);
             Session.setUsername(temp);
-            System.out.println(Session.getUsername());
-            dh.getjLabel1().setText(temp);
             dh.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
             
             
         }
@@ -263,7 +257,7 @@ public class login extends javax.swing.JFrame {
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
       
         new registrationForm().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
    
     }//GEN-LAST:event_jLabel4MousePressed
 

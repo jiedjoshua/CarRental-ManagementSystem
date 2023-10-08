@@ -7,6 +7,7 @@ package rentAcarLibs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,12 +23,14 @@ public class rentSuv extends acceptRent{
    
     @Override
     public void rentNow() {
-    try (Connection connection = con.connect()) {
-        String insertSql = "INSERT INTO rentedcars (username, brand, model, transmission, month, day, year, endmonth, endday, endyear) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try  {
+        String insertSql = "INSERT INTO rentedcars (username, brand, model, transmission, month, day, year, endmonth, endday, endyear, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String updateAvailabilitySql = "UPDATE suv SET availability = 'Not Available' WHERE brand = ? AND model = ? AND transmission = ?";
         
+        int total = totalAmount();
+        
         // Insert rental record
-        PreparedStatement insertStatement = connection.prepareStatement(insertSql);
+        PreparedStatement insertStatement = con.prepareStatement(insertSql);
         insertStatement.setString(1, username);
         insertStatement.setString(2, brand);
         insertStatement.setString(3, model);
@@ -38,12 +41,13 @@ public class rentSuv extends acceptRent{
         insertStatement.setString(8, emonth);
         insertStatement.setString(9, eday);
         insertStatement.setString(10, eyear);
+        insertStatement.setInt(11, total);
         
         int rowsAffected = insertStatement.executeUpdate();
         
         if (rowsAffected > 0) {
             // Update sedan availability
-            PreparedStatement updateAvailabilityStatement = connection.prepareStatement(updateAvailabilitySql);
+            PreparedStatement updateAvailabilityStatement = con.prepareStatement(updateAvailabilitySql);
             updateAvailabilityStatement.setString(1, brand);
             updateAvailabilityStatement.setString(2, model);
             updateAvailabilityStatement.setString(3, transmission);
@@ -63,9 +67,9 @@ public class rentSuv extends acceptRent{
     
     
 public boolean checkRentedCars() {
-    try (Connection connection = con.connect()) {
+    try  {
         String sql = "SELECT * FROM rentedcars WHERE brand = ? AND model = ? AND transmission = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, brand);
         preparedStatement.setString(2, model);
         preparedStatement.setString(3, transmission);
@@ -96,5 +100,34 @@ public boolean checkRentedCars() {
     }
 }
 
+    @Override
+    public int totalAmount() {
+         int totalDays = Integer.parseInt(sday) + Integer.parseInt(eday);
+     totalDays = totalDays - 1;
+     try {
+        
+        String sql ="SELECT price FROM suv WHERE brand = ? AND model = ? AND transmission = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, brand);
+        preparedStatement.setString(2, model);
+        preparedStatement.setString(3, transmission);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            int price = resultSet.getInt("price");
+            int totalPrice = price * totalDays;
+            return totalPrice;
+        } else {
+            System.out.println("Car not found in the database.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle the exception appropriately in your application
+    } 
     
+     
+     return 0;
+  }
 }
+
+    
+

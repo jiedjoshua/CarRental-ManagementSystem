@@ -117,8 +117,8 @@ public class registrationForm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 102, 102));
         jLabel7.setText("Create username");
 
-        newUname.setEditable(false);
         newUname.setBackground(new java.awt.Color(234, 251, 255));
+        newUname.setForeground(new java.awt.Color(51, 51, 51));
         newUname.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         newUname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,6 +235,7 @@ public class registrationForm extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBt1ActionPerformed
@@ -245,7 +246,8 @@ public class registrationForm extends javax.swing.JFrame {
         {
             
         user.addUser();
-        this.setVisible(false);
+        new login().setVisible(true);
+        this.dispose();
         
   
         }

@@ -22,7 +22,7 @@ public class rentSedan extends acceptRent {
 
     @Override
     public void rentNow() {
-         try (Connection connection = con.connect()) {
+         try  {
         String insertSql = "INSERT INTO rentedcars (username, brand, model, transmission, month, day, year, endmonth, endday, endyear, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String updateAvailabilitySql = "UPDATE sedan SET availability = 'Not Available' WHERE brand = ? AND model = ? AND transmission = ?";
         
@@ -30,7 +30,7 @@ public class rentSedan extends acceptRent {
         
         int total = totalAmount();
         
-        PreparedStatement insertStatement = connection.prepareStatement(insertSql);
+        PreparedStatement insertStatement = con.prepareStatement(insertSql);
         insertStatement.setString(1, username);
         insertStatement.setString(2, brand);
         insertStatement.setString(3, model);
@@ -48,7 +48,7 @@ public class rentSedan extends acceptRent {
         
         if (rowsAffected > 0) {
             // Update sedan availability
-            PreparedStatement updateAvailabilityStatement = connection.prepareStatement(updateAvailabilitySql);
+            PreparedStatement updateAvailabilityStatement = con.prepareStatement(updateAvailabilitySql);
             updateAvailabilityStatement.setString(1, brand);
             updateAvailabilityStatement.setString(2, model);
             updateAvailabilityStatement.setString(3, transmission);
@@ -67,9 +67,9 @@ public class rentSedan extends acceptRent {
 
     @Override
     public boolean checkRentedCars() {
-        try (Connection connection = con.connect()) {
+        try  {
         String sql = "SELECT * FROM rentedcars WHERE brand = ? AND model = ? AND transmission = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, brand);
         preparedStatement.setString(2, model);
         preparedStatement.setString(3, transmission);
@@ -100,15 +100,15 @@ public class rentSedan extends acceptRent {
     }
   }
     
-    
+  @Override  
   public int totalAmount(){
       
      int totalDays = Integer.parseInt(sday) + Integer.parseInt(eday);
      totalDays = totalDays - 1;
      try {
-        Connection connection = con.connect();
+        
         String sql ="SELECT price FROM sedan WHERE brand = ? AND model = ? AND transmission = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, brand);
         preparedStatement.setString(2, model);
         preparedStatement.setString(3, transmission);

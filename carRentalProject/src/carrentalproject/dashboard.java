@@ -4,6 +4,8 @@
  */
 package carrentalproject;
 
+
+import UserLogin.Session;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,11 +14,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import loginPage.login;
 import rentAcar.rentAcar;
 
 public class dashboard extends javax.swing.JFrame {
 
-  rentAcar rcar = new rentAcar();
+ 
    
 
 
@@ -63,6 +66,11 @@ public class dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 500));
         setMinimumSize(new java.awt.Dimension(900, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(234, 251, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 500));
@@ -100,6 +108,11 @@ public class dashboard extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
 
         dashlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dashlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,18 +240,33 @@ public class dashboard extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rentconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentconMousePressed
 
-        rcar.setVisible(true);
-        this.setVisible(false);
+        new rentAcar().setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_rentconMousePressed
 
     private void dashconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashconMousePressed
 
     }//GEN-LAST:event_dashconMousePressed
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        String username = Session.getUsername();    
+        jLabel1.setText(username);
+       
+    }//GEN-LAST:event_formWindowOpened
 
       
     /**

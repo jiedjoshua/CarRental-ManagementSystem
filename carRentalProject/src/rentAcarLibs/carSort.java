@@ -8,7 +8,7 @@ package rentAcarLibs;
 //Note: It will sort the brand and transmission for the rentnow Page
 
 
-import databasecon.connection;
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import javax.swing.JComboBox;
 
@@ -16,10 +16,10 @@ abstract class carSort {
      final Connection con;
      JComboBox<String> jc;
      String selectedBrand;
-     connection db;
+     
 
-    public carSort(Connection con, JComboBox<String> jc, String selectedBrand) {
-        this.con = con;
+    public carSort(JComboBox<String> jc, String selectedBrand) {
+        this.con = ConnectionManager.getConnection();
         this.jc = jc;
         this.selectedBrand = selectedBrand;
     }

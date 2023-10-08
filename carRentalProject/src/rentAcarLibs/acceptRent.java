@@ -1,8 +1,9 @@
 package rentAcarLibs;
 
 
+import databasecon.ConnectionManager;
 import databasecon.connection;
-
+import java.sql.Connection;
 
 //Note: This abstract class will forward the rented cars in the database
 //The following class will use this:
@@ -11,7 +12,7 @@ import databasecon.connection;
 
 
 abstract class acceptRent {
-    connection con;
+    Connection con;
     String username;
     String brand;
     String model;
@@ -24,7 +25,7 @@ abstract class acceptRent {
     String eyear;
 
     public acceptRent(String username, String brand, String model, String transmission, String smonth, String sday, String syear, String emonth, String eday, String eyear) {
-        this.con = new connection();
+        this.con = ConnectionManager.getConnection();
         this.username = username;
         this.brand = brand;
         this.model = model;
@@ -115,6 +116,8 @@ public abstract boolean checkRentedCars(); /*{
 }
 
 */
+
+public abstract int totalAmount();
    
 }
 

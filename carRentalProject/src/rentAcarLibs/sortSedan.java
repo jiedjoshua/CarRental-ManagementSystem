@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 public class sortSedan extends carSort {
 
     public sortSedan(Connection con, JComboBox<String> jc, String selectedBrand) {
-        super(con, jc, selectedBrand);
+        super(jc, selectedBrand);
     }
 
     @Override

@@ -5,6 +5,7 @@
 
 package rentAcarLibs;
 
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +21,8 @@ public class tablesuv {
     private suv suvcar;
     
 
-      public tablesuv(Connection con, suv suvcar) {
-        this.con = con;
+      public tablesuv(suv suvcar) {
+        this.con = ConnectionManager.getConnection();
         this.suvcar = suvcar; // Initialize the sedan object
     }
 
@@ -83,15 +84,7 @@ public void tablePopulator(String filterBrand) {
 
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately in your application
-        } finally {
-            try {
-                if (con != null && !con.isClosed()) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace(); // Handle the exception appropriately in your application
-            }
-        }
+        } 
     }
 
   

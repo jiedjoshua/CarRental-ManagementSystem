@@ -1,6 +1,7 @@
 
 package rentAcarLibs;
 
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,8 +16,8 @@ public class table {
     private sedan sedcar;
     
 
-      public table(Connection con, sedan sedcar) {
-        this.con = con;
+      public table(sedan sedcar) {
+        this.con = ConnectionManager.getConnection();
         this.sedcar = sedcar; // Initialize the sedan object
     }
 
@@ -78,15 +79,7 @@ public class table {
 
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately in your application
-        } finally {
-            try {
-                if (con != null && !con.isClosed()) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace(); // Handle the exception appropriately in your application
-            }
-        }
+        } 
     }
 
 public void filterDate(String startMonth, String startDay, String startYear) {

@@ -5,6 +5,7 @@
 package adminlibs;
 
 import carrentalproject.usersTable;
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +19,8 @@ public class tablePopulator implements ITablePopulator{
     private final Connection con;
     private usersTable ut;
 
-    public tablePopulator(Connection con, usersTable ut) {
-        this.con = con;
+    public tablePopulator(usersTable ut) {
+        this.con = ConnectionManager.getConnection();
         this.ut = ut;
     }
     
@@ -54,15 +55,7 @@ public class tablePopulator implements ITablePopulator{
         }
     } catch (SQLException e) {
         e.printStackTrace(); // Handle the exception appropriately in your application
-    } finally {
-        try {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately in your application
-        }
-    }
+    } 
 }
 
     

@@ -9,6 +9,7 @@ import databasecon.connection;
 import java.sql.Connection;
 import java.util.Set;
 import javax.swing.JTable;
+import loginPage.login;
 import rentAcarLibs.BrandComparator;
 import rentAcarLibs.tablesuv;
 
@@ -18,12 +19,11 @@ import rentAcarLibs.tablesuv;
  */
 public class suv extends javax.swing.JFrame {
 
-    private final connection dbConnection;
-    rentNowSuv r = new rentNowSuv();
+    
+   
     public suv() {
         initComponents();
-        dbConnection = new connection();
-        Connection con = dbConnection.connect();
+       
     }
 
     /**
@@ -52,19 +52,18 @@ public class suv extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         suvtable = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 550));
         setMinimumSize(new java.awt.Dimension(900, 540));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(234, 251, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
         jPanel1.setMinimumSize(new java.awt.Dimension(900, 500));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jPanel8.setBackground(new java.awt.Color(153, 0, 255));
+        jPanel8.setBackground(new java.awt.Color(0, 102, 102));
         jPanel8.setMaximumSize(new java.awt.Dimension(100, 500));
         jPanel8.setMinimumSize(new java.awt.Dimension(100, 500));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 500));
@@ -103,6 +102,11 @@ public class suv extends javax.swing.JFrame {
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel45MousePressed(evt);
+            }
+        });
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,21 +244,6 @@ public class suv extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setBackground(new java.awt.Color(51, 102, 0));
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Rent now");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
-            }
-        });
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         jToggleButton2.setBackground(new java.awt.Color(51, 102, 0));
         jToggleButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -286,11 +275,6 @@ public class suv extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 49, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(391, 391, 391)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(415, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,74 +289,69 @@ public class suv extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(239, 239, 239)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MousePressed
         // TODO add your handling code here:
         new rentAcar().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel42MousePressed
 
     private void jLabel44MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MousePressed
         // TODO add your handling code here:
         new dashboard().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel44MousePressed
 
     private void jLabel46MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MousePressed
         // TODO add your handling code here:
-        new dashboard().setVisible(true);
+       
         this.setVisible(false);
     }//GEN-LAST:event_jLabel46MousePressed
 
     private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
         // TODO add your handling code here:
         new rentAcar().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel47MousePressed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     String selectedBrand = (String) jComboBox1.getSelectedItem();
  
-    Connection con = dbConnection.connect();  
-    tablesuv t = new tablesuv(con, this);
+    
+    tablesuv t = new tablesuv(this);
     
    
     
     t.tablePopulator(selectedBrand);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        // TODO add your handling code here:
-        r.setVisible(true);
-
-    }//GEN-LAST:event_jToggleButton1MouseClicked
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
         // TODO add your handling code here:
-        r.setVisible(true);
+        new rentNowSuv().setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jToggleButton2MouseClicked
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jLabel45MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MousePressed
+        // TODO add your handling code here:
+       
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel45MousePressed
 
     /**
      * @param args the command line arguments
@@ -426,7 +405,6 @@ public class suv extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator22;
     private javax.swing.JSeparator jSeparator23;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTable suvtable;
     // End of variables declaration//GEN-END:variables

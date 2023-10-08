@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import carrentalproject.rentedCarsTable;
+import databasecon.ConnectionManager;
 
 /**
  *
@@ -21,8 +22,8 @@ public class rentedCarsPopulator implements ITablePopulator {
     private Connection con;
     private rentedCarsTable rc;
 
-    public rentedCarsPopulator(Connection con, rentedCarsTable rc) {
-        this.con = con;
+    public rentedCarsPopulator(rentedCarsTable rc) {
+        this.con = ConnectionManager.getConnection();
         this.rc = rc;
     }
    
@@ -30,8 +31,9 @@ public class rentedCarsPopulator implements ITablePopulator {
     @Override
     public void tablepopulator() {
         try {
+        int total = 0;
         Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery("SELECT username, brand, model, transmission, month, day, year FROM rentedcars");
+        ResultSet rs = s.executeQuery("SELECT username, brand, model, transmission, month, day, year, total FROM rentedcars");
 
         DefaultTableModel model = new DefaultTableModel();
         // Assuming jTable1 is your table component
@@ -46,6 +48,7 @@ public class rentedCarsPopulator implements ITablePopulator {
         model.addColumn("Month");
         model.addColumn("Day");
         model.addColumn("Year");
+        model.addColumn("Total Amount");
 
         while (rs.next()) {
             String username = rs.getString("username");
@@ -55,21 +58,14 @@ public class rentedCarsPopulator implements ITablePopulator {
             String month = rs.getString("month");
             String day = rs.getString("day");
             String year = rs.getString("year");
+            total = rs.getInt("total");
 
             // Add data to the table model
-            model.addRow(new Object[]{username, brand, modelval, transmission, month, day, year});
+            model.addRow(new Object[]{username, brand, modelval, transmission, month, day, year, total});
         }
     } catch (SQLException e) {
         e.printStackTrace(); // Handle the exception appropriately in your application
-    } finally {
-        try {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately in your application
-        }
-    }
+    } 
   }
 }
     

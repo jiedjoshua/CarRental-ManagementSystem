@@ -4,11 +4,13 @@
  */
 package carrentalproject;
 
+import adminlibs.dashboardUpdate;
 import adminlibs.rentedCarsPopulator;
 import adminlibs.tablePopulator;
 import databasecon.connection;
 import java.sql.Connection;
 import javax.swing.JLabel;
+import loginPage.login;
 
 /**
  *
@@ -16,14 +18,13 @@ import javax.swing.JLabel;
  */
 public class adminDash extends javax.swing.JFrame {
 
-    private final connection dbConnection;
+    
     usersTable ut = new usersTable();
     rentedCarsTable rnt = new rentedCarsTable();
     
     public adminDash() {
         initComponents();
-        dbConnection = new connection();
-        Connection con = dbConnection.connect();
+        
     }
 
     /**
@@ -62,6 +63,11 @@ public class adminDash extends javax.swing.JFrame {
         totalEarnings = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(234, 251, 255));
 
@@ -98,6 +104,11 @@ public class adminDash extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
 
         dashlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dashlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -359,6 +370,7 @@ public class adminDash extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rentconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentconMousePressed
@@ -368,29 +380,30 @@ public class adminDash extends javax.swing.JFrame {
     }//GEN-LAST:event_rentconMousePressed
 
     private void dashconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashconMousePressed
-
+        
+       
     }//GEN-LAST:event_dashconMousePressed
 
     private void accountsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsMousePressed
         // TODO add your handling code here:
-        Connection con = dbConnection.connect();  
-        tablePopulator t = new tablePopulator(con,ut);
+        
+        tablePopulator t = new tablePopulator(ut);
         t.tablepopulator(); 
         
         ut.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
        
         
     }//GEN-LAST:event_accountsMousePressed
 
     private void rentedCarsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentedCarsMousePressed
         // TODO add your handling code here:
-        Connection con = dbConnection.connect();  
-        rentedCarsPopulator rc = new rentedCarsPopulator(con,rnt);
+       
+        rentedCarsPopulator rc = new rentedCarsPopulator(rnt);
         rc.tablepopulator(); 
         
         rnt.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
         
         
     }//GEN-LAST:event_rentedCarsMousePressed
@@ -398,6 +411,21 @@ public class adminDash extends javax.swing.JFrame {
     private void earningsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_earningsMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_earningsMouseClicked
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        dashboardUpdate du = new dashboardUpdate(this);
+        du.usersCount();
+        du.totalEarnings();
+        du.rentedCarsCount();
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

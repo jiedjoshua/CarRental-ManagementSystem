@@ -4,7 +4,11 @@
  */
 package carrentalproject;
 
+import adminlibs.dashboardUpdate;
+import databasecon.connection;
+import java.sql.Connection;
 import javax.swing.JTable;
+import loginPage.login;
 
 /**
  *
@@ -12,11 +16,13 @@ import javax.swing.JTable;
  */
 public class rentedCarsTable extends javax.swing.JFrame {
 
-    /**
-     * Creates new form rentedCarsTable
-     */
+  
+    
+   
     public rentedCarsTable() {
         initComponents();
+        
+     
     }
 
     /**
@@ -83,6 +89,11 @@ public class rentedCarsTable extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
 
         dashlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dashlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,7 +179,7 @@ public class rentedCarsTable extends javax.swing.JFrame {
                 .addComponent(renlbl)
                 .addGap(7, 7, 7)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
@@ -234,26 +245,28 @@ public class rentedCarsTable extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel50)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel50)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dashconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashconMousePressed
-
+        new adminDash().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_dashconMousePressed
 
     private void rentconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentconMousePressed
@@ -261,6 +274,13 @@ public class rentedCarsTable extends javax.swing.JFrame {
         /* rcar.setVisible(true);
         this.setVisible(false);*/
     }//GEN-LAST:event_rentconMousePressed
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    
+    }//GEN-LAST:event_jLabel5MousePressed
 
     /**
      * @param args the command line arguments

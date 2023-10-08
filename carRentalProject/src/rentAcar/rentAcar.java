@@ -7,6 +7,7 @@ package rentAcar;
 import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
+import loginPage.login;
 import rentAcarLibs.BrandComparator;
 import rentAcarLibs.table;
 import rentAcarLibs.tablesuv;
@@ -19,25 +20,15 @@ import rentAcarLibs.tablesuv;
 public class rentAcar extends javax.swing.JFrame  {
 
   
-    private final connection dbConnection;
-    private final sedan s;
-    private final table t;
-    private final tablesuv suv;
-    private final suv suvcar;
+   
+    sedan s = new sedan();
+    suv suvcar = new suv();
+    table t = new table(s);
+    tablesuv ts = new tablesuv(suvcar);
     
     public rentAcar() {
         
         initComponents();
-        
-        dbConnection = new connection();
-        Connection con = dbConnection.connect();
-        s = new sedan();
-        suvcar = new suv();
-        
-        t = new table(con,s);
-        suv = new tablesuv(con,suvcar);
-        
-        
         
 
     }
@@ -85,11 +76,11 @@ public class rentAcar extends javax.swing.JFrame  {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(237, 237, 237));
+        jPanel1.setBackground(new java.awt.Color(234, 251, 255));
         jPanel1.setForeground(new java.awt.Color(221, 217, 217));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jPanel8.setBackground(new java.awt.Color(153, 0, 255));
+        jPanel8.setBackground(new java.awt.Color(0, 102, 102));
         jPanel8.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -121,6 +112,11 @@ public class rentAcar extends javax.swing.JFrame  {
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel45MousePressed(evt);
+            }
+        });
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,25 +267,27 @@ public class rentAcar extends javax.swing.JFrame  {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
     private void jLabel44MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MousePressed
-        new dashboard().setVisible(true);
-        this.setVisible(false);
+            new dashboard().setVisible(true);
+            this.dispose();
+        
         
     }//GEN-LAST:event_jLabel44MousePressed
 
     private void jLabel46MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MousePressed
-        new dashboard().setVisible(true);
-        this.setVisible(false);
+       
+        
     }//GEN-LAST:event_jLabel46MousePressed
 
     private void sedanconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sedanconMousePressed
         
         s.setVisible(true);
-        this.setVisible(false);
         t.sortBrand( null);
+        this.dispose();
         
         
     }//GEN-LAST:event_sedanconMousePressed
@@ -297,9 +295,17 @@ public class rentAcar extends javax.swing.JFrame  {
     private void jLabel51MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel51MousePressed
         // TODO add your handling code here:
         suvcar.setVisible(true);
-        this.setVisible(false);
-        suv.tablePopulator (null);
+        ts.tablePopulator (null);
+        this.dispose();
     }//GEN-LAST:event_jLabel51MousePressed
+
+    private void jLabel45MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_jLabel45MousePressed
 
     /**
      * @param args the command line arguments

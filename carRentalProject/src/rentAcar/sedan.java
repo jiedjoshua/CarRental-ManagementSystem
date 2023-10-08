@@ -10,6 +10,7 @@ import carrentalproject.dashboard;
 import databasecon.connection;
 import java.sql.Connection;
 import javax.swing.JTable;
+import loginPage.login;
 import rentAcarLibs.BrandComparator;
 import rentAcarLibs.table;
 
@@ -19,14 +20,13 @@ import rentAcarLibs.table;
  */
 public class sedan extends javax.swing.JFrame {
 
-    private final connection dbConnection;
+    
   
     rentNow r = new rentNow();
     public sedan() {
         initComponents();
-        dbConnection = new connection();
-        Connection con = dbConnection.connect();
-        table t = new table(con, this);
+        
+       
         
        
         
@@ -114,6 +114,11 @@ public class sedan extends javax.swing.JFrame {
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel45MousePressed(evt);
+            }
+        });
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,14 +358,15 @@ public class sedan extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
                                                  
     String selectedBrand = (String) jComboBox1.getSelectedItem();
  
-    Connection con = dbConnection.connect();  
-    table t = new table(con, this);
+  
+    table t = new table(this);
     
    
 
@@ -382,6 +388,7 @@ public class sedan extends javax.swing.JFrame {
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
         r.setVisible(true);
+        this.dispose();
        
         
     }//GEN-LAST:event_jToggleButton1MouseClicked
@@ -389,25 +396,27 @@ public class sedan extends javax.swing.JFrame {
     private void jLabel47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MousePressed
         // TODO add your handling code here:
         new rentAcar().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel47MousePressed
 
     private void jLabel42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MousePressed
         // TODO add your handling code here:
         new rentAcar().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel42MousePressed
 
     private void jLabel44MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MousePressed
         // TODO add your handling code here:
         new dashboard().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
+        
+      
     }//GEN-LAST:event_jLabel44MousePressed
 
     private void jLabel46MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MousePressed
         // TODO add your handling code here:
         new dashboard().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel46MousePressed
 
     private void startYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startYearCBActionPerformed
@@ -419,8 +428,8 @@ public class sedan extends javax.swing.JFrame {
         // TODO add your handling code here:
     
     String selectedMonth = (String) jComboBox1.getSelectedItem();
-    Connection con = dbConnection.connect();  
-    table t = new table(con, this);
+     
+    table t = new table(this);
     
     
     
@@ -436,6 +445,12 @@ public class sedan extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_startDayCBActionPerformed
+
+    private void jLabel45MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel45MousePressed
 
     
     

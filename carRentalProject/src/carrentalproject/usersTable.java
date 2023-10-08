@@ -4,7 +4,11 @@
  */
 package carrentalproject;
 
+import adminlibs.dashboardUpdate;
+import databasecon.connection;
+import java.sql.Connection;
 import javax.swing.JTable;
+import loginPage.login;
 
 /**
  *
@@ -12,11 +16,12 @@ import javax.swing.JTable;
  */
 public class usersTable extends javax.swing.JFrame {
 
-    /**
-     * Creates new form usersTable
-     */
+   
+    
+    
     public usersTable() {
         initComponents();
+        
     }
 
     /**
@@ -83,6 +88,11 @@ public class usersTable extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cons/signout.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
 
         dashlbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dashlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,10 +260,12 @@ public class usersTable extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dashconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashconMousePressed
-
+        new adminDash().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_dashconMousePressed
 
     private void rentconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentconMousePressed
@@ -261,6 +273,14 @@ public class usersTable extends javax.swing.JFrame {
         /* rcar.setVisible(true);
         this.setVisible(false);*/
     }//GEN-LAST:event_rentconMousePressed
+
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+        
+       
+    }//GEN-LAST:event_jLabel5MousePressed
 
     /**
      * @param args the command line arguments

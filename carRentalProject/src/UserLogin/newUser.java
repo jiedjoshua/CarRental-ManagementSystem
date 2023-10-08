@@ -47,7 +47,7 @@ public class newUser {
      try {
         Statement s = db.connect().createStatement();
         s.executeUpdate("INSERT INTO usertable (username, password) VALUES ('" + username + "','" + pwd + "')");
-        s.executeUpdate("INSERT INTO userinfo (fname, lname, mNum, username, licno) VALUES ('" + fname + "','" + lname + "','" + mNum + "','" + username + "'," + licno + "')");
+        s.executeUpdate("INSERT INTO userinfo (fname, lname, mNum, username, licno) VALUES ('" + fname + "','" + lname + "','" + mNum + "','" + username + "','" + licno + "')");
 
         JOptionPane.showMessageDialog(null, "Your account has been created!");
 

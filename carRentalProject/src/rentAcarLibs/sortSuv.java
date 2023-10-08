@@ -17,7 +17,7 @@ import javax.swing.JComboBox;
 public class sortSuv extends carSort{
 
     public sortSuv(Connection con, JComboBox<String> jc, String selectedBrand) {
-        super(con, jc, selectedBrand);
+        super(jc, selectedBrand);
     }
 
     @Override

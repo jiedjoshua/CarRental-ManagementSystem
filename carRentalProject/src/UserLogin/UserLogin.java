@@ -1,6 +1,6 @@
 package Userlogin;
 
-import databasecon.connection;
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,47 +16,45 @@ public class UserLogin {
     private ResultSet rs;
     private String username;
     private String password;
-    private connection db;
 
-    public String getUsername() {
-        return username;
+    public UserLogin(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.con = ConnectionManager.getConnection(); // Assuming you have a ConnectionManager class to establish database connection.
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public UserLogin(Connection con) {
-        this.con = con;
-    }
-
-    public boolean validateLogin(String username, String password) {
+    public boolean validateUser() {
         try {
-            pst = con.prepareStatement("SELECT * FROM usertable");
+            String query = "SELECT * FROM usertable WHERE username = ? AND password = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
             rs = pst.executeQuery();
 
-            while (rs.next()) {
-                String uname = rs.getString("username");
-                String pwd = rs.getString("password");
+            return rs.next(); // If there is a matching user in the database, rs.next() will return true.
 
-                if (username.equals(uname) && password.equals(pwd)) {
-                    this.username = uname;
-                    this.password = uname;
-                    return true;
-                }
-                
-            }
-            JOptionPane.showMessageDialog(null, "Username or password is incorrect!");
         } catch (SQLException ex) {
             Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } finally {
+            // Close the resources (ResultSet, PreparedStatement, and Connection) in reverse order of their creation.
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        return false;
     }
-    
     
     public String getUserFullName(String enteredUsername, String enteredPassword) {
     try {
-        Statement s = db.connect().createStatement();
+        Statement s = con.createStatement();
         ResultSet resultSet = s.executeQuery("SELECT ut.username, ui.fname, ui.lname FROM usertable ut INNER JOIN userinfo ui ON ut.username = ui.username WHERE ut.username = '" + enteredUsername + "' AND ut.password = '" + enteredPassword + "'");
 
         if (resultSet.next()) {
@@ -71,6 +69,5 @@ public class UserLogin {
         return null;
     }
 }
-    
     
 }

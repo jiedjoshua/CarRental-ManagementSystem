@@ -6,6 +6,7 @@ package adminlibs;
 
 
 import carrentalproject.adminDash;
+import databasecon.ConnectionManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +20,8 @@ public class dashboardUpdate {
     final Connection con;
     adminDash ad;
 
-    public dashboardUpdate(Connection con, adminDash ad) {
-        this.con = con;
+    public dashboardUpdate(adminDash ad) {
+        this.con = ConnectionManager.getConnection();
         this.ad = ad;
     }
     
@@ -66,13 +67,7 @@ public class dashboardUpdate {
     } catch (SQLException e) {
         e.printStackTrace(); // Handle the exception appropriately in your application
     } finally {
-        try {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately in your application
-        }
+        
     }
 }
 
