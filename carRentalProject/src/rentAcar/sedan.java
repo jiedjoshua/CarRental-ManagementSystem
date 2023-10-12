@@ -11,7 +11,7 @@ import databasecon.connection;
 import java.sql.Connection;
 import javax.swing.JTable;
 import loginPage.login;
-import rentAcarLibs.BrandComparator;
+import rentAcarLibs.rentPopulator;
 import rentAcarLibs.table;
 
 /**
@@ -244,8 +244,12 @@ public class sedan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        sedantable.setEnabled(false);
         sedantable.setRowHeight(25);
+        sedantable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sedantableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(sedantable);
         if (sedantable.getColumnModel().getColumnCount() > 0) {
             sedantable.getColumnModel().getColumn(3).setPreferredWidth(50);
@@ -387,8 +391,18 @@ public class sedan extends javax.swing.JFrame {
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
-        r.setVisible(true);
-        this.dispose();
+         selectedSedan ss = new selectedSedan();
+        
+        rentPopulator rp = new rentPopulator(this, ss);
+       
+        rp.populateTable();
+       
+        
+        ss.setVisible(true);
+      
+        
+       /* r.setVisible(true);
+        this.dispose();*/
        
         
     }//GEN-LAST:event_jToggleButton1MouseClicked
@@ -451,6 +465,11 @@ public class sedan extends javax.swing.JFrame {
         new login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel45MousePressed
+
+    private void sedantableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sedantableMouseClicked
+      // Handle mouse click event
+       
+    }//GEN-LAST:event_sedantableMouseClicked
 
     
     

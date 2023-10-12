@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import carrentalproject.rentedCarsTable;
 import databasecon.ConnectionManager;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -28,23 +29,22 @@ public class rentedCarsPopulator implements ITablePopulator {
     }
    
     
-    @Override
-    public void tablepopulator() {
-        try {
+ @Override
+public void tablepopulator() {
+    try {
         int total = 0;
+        int carid = 0;
+
         Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery("SELECT username, brand, model, transmission, month, day, year, total FROM rentedcars");
+        ResultSet rs = s.executeQuery("SELECT username, carid, month, day, year, total FROM rentedcars");
 
         DefaultTableModel model = new DefaultTableModel();
-        // Assuming jTable1 is your table component
         JTable jTable1 = rc.getjTable1();
         jTable1.setModel(model);
 
         // Add columns to the table model
         model.addColumn("Username");
-        model.addColumn("Brand");
-        model.addColumn("Model");
-        model.addColumn("Transmission");
+        model.addColumn("Car");
         model.addColumn("Month");
         model.addColumn("Day");
         model.addColumn("Year");
@@ -52,21 +52,38 @@ public class rentedCarsPopulator implements ITablePopulator {
 
         while (rs.next()) {
             String username = rs.getString("username");
-            String brand = rs.getString("brand");
-            String modelval = rs.getString("model");
-            String transmission = rs.getString("transmission");
+            carid = rs.getInt("carid");
             String month = rs.getString("month");
             String day = rs.getString("day");
             String year = rs.getString("year");
             total = rs.getInt("total");
 
+            // Retrieve additional car information using carid
+            String brand = "";
+            String transmission = "";
+            String modelcar = "";
+            String sql = "SELECT brand, model, transmission FROM sedan WHERE carid = ?";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, carid);
+            ResultSet carInfo = preparedStatement.executeQuery();
+
+            if (carInfo.next()) {
+                brand = carInfo.getString("brand");
+                modelcar =  carInfo.getString("model");
+                transmission = carInfo.getString("transmission");
+            }
+            
+            brand = brand + " " + modelcar;
+
             // Add data to the table model
-            model.addRow(new Object[]{username, brand, modelval, transmission, month, day, year, total});
+            model.addRow(new Object[]{username, brand, transmission, month, day, year, total});
         }
+
     } catch (SQLException e) {
         e.printStackTrace(); // Handle the exception appropriately in your application
-    } 
-  }
+    }
+ }
 }
+
     
 

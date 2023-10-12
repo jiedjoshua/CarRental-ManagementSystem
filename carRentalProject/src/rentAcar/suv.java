@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.util.Set;
 import javax.swing.JTable;
 import loginPage.login;
-import rentAcarLibs.BrandComparator;
 import rentAcarLibs.tablesuv;
 
 /**
