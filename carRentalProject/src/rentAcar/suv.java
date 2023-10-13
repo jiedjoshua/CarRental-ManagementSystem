@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.util.Set;
 import javax.swing.JTable;
 import loginPage.login;
-import rentAcarLibs.BrandComparator;
+import rentAcarLibs.rentPopSuv;
+import rentAcarLibs.rentPopulator;
 import rentAcarLibs.tablesuv;
 
 /**
@@ -232,7 +233,6 @@ public class suv extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        suvtable.setEnabled(false);
         suvtable.setRowHeight(25);
         jScrollPane1.setViewportView(suvtable);
 
@@ -335,13 +335,22 @@ public class suv extends javax.swing.JFrame {
 
     private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
         // TODO add your handling code here:
-        new rentNowSuv().setVisible(true);
+
         this.dispose();
         
     }//GEN-LAST:event_jToggleButton2MouseClicked
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
+        selectedSuv ss = new selectedSuv();
+        
+        rentPopSuv rp = new rentPopSuv(this, ss);
+       
+        rp.populateTable();
+       
+        
+        ss.setVisible(true);
+        
         
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
