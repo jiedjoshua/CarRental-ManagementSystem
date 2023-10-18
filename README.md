@@ -3,15 +3,40 @@
 
 The Car Rental & Management System developed in Java GUI provides a user-friendly interface for customers to browse available cars, make reservations, and manage bookings. Admins can oversee the car inventory, bookings, and user accounts. The system includes features like user authentication, interactive forms, data validation, and optional database integration for seamless functionality and efficient management of car rental operations.
 
+## Applications and files needed in the program
+ 1. Apache Netbeans
+ 2. Xampp
+ 3. SQL file from this repository
+ 4. Java SQL connector (https://dev.mysql.com/downloads/connector/j/)
+ 5. Date Chooser (provided in this repo)
 
-## Reminder
-This is a reminder to all members involved that the software currently being developed. I kindly request that you refrain from sharing any screenshots or visual representations of the software on public platforms.
+## Setting up the Xampp
+ 1. Install Xampp
+ 2. Open
+ 3. Start Apache
+ 4. Start MySQL and click Admin
+ 5. Create table named "carrentaldb"
+ 6. Import the SQL from this repository
 
-I want to emphasize the critical need for confidentiality. Sharing screenshots of the software before the deadline of the project can lead to potential copyright infringement of the design and contents. I kindly request everyone involved to refrain from sharing any visual materials of the software.
+## Setting up Java SQL Connector
+ 1. Open our project
+ 2. Locate libraries
+ 3. Right-click libraries
+ 4. Click Add/JAR Folder
+ 5. Locate the mysqlconnector.jar that you downloaded.
 
-Your cooperation in this matter is greatly appreciated. 
+## Setting up JDateChooser
+ 1. Open our project
+ 2. Navigate through the menu bar then find Tools
+ 3. Click Tools -> Palette -> Swing/AWT Components
+ 4. Click add from JAR
+ 5. Locate JCalendar folder
+ 6. Open JCalendar folder -> lib -> jcalendar-1.4 -> next
+ 7. Click JDateChooser -> next -> Swing Controls -> finish
+ 8. You should see JDateChooser in the Swing Controls the Palette 
 
-Thank you for your attention and understanding.
+
+
 ## Screenshots
 
 Login page
