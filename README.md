@@ -44,7 +44,7 @@ The Car Rental & Management System developed in Java GUI provides a user-friendl
  6. Open Apache Netbeans
  7. Click file -> open project -> Locate the carRentalProject that you extracted -> Open
  8. Under LoginPage Package
- 9. Right CLick login -> Run file
+ 9. Right Click login -> Run file
 
 
 
