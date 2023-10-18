@@ -33,7 +33,18 @@ The Car Rental & Management System developed in Java GUI provides a user-friendl
  5. Locate JCalendar folder
  6. Open JCalendar folder -> lib -> jcalendar-1.4 -> next
  7. Click JDateChooser -> next -> Swing Controls -> finish
- 8. You should see JDateChooser in the Swing Controls the Palette 
+ 8. You should see JDateChooser in the Swing Controls
+
+## How to run the program?
+ 1. Under the main branch of this repository click Code -> Download Zip File
+ 2. Extract
+ 3. Open Xampp Control Panel
+ 4. Start Apache
+ 5. Start mySQL
+ 6. Open Apache Netbeans
+ 7. Click file -> open project -> Locate the carRentalProject that you extracted -> Open
+ 8. Under LoginPage Package
+ 9. Right CLick login -> Run file
 
 
 
