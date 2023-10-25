@@ -75,7 +75,7 @@ List of Users
 List of Vehicles that are rented
 ![Screenshot 2023-10-08 172740](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/2b703139-0294-4ec4-bc2c-e76de5f14811)
 
-Add a Car
+Add/Delete a Car
 ![Screenshot 2023-10-25 115333](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/6ff9049c-d339-43eb-a629-d29b38acf0f9)
 
 ![Screenshot 2023-10-25 115432](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/5973bc06-2359-46a2-b01c-3ec561b7322c)
