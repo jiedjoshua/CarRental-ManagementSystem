@@ -51,30 +51,34 @@ The Car Rental & Management System developed in Java GUI provides a user-friendl
 ## Screenshots
 
 Login page
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/df5a50a0-80d7-4e9c-b842-063511a6b5dd)
+![Screenshot 2023-10-08 172210](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/d399d570-dcdd-4e26-9216-0a036ec0ebe5)
 
 Registration page
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/e36ed985-6c37-4e90-8627-d85f02622316)
+![Screenshot 2023-10-08 172252](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/66ae97a4-5259-4bfd-8113-2080ed5993d5)
 
 Rent a Car page
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/48a79ecb-d553-4356-99d6-88a9170016c7)
+![Screenshot 2023-10-08 172422](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/62c82dbd-79e1-4dbe-91f8-a57c39eef189)
 
 List of Sedan Cars
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/59b8077f-567f-42d4-ac6b-876764e85dbb)
+![Screenshot 2023-10-08 172452](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/9dd03876-c0ce-4ee6-a6b9-44c7b2e147fb)
 
 List of SUV Cars
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/b1653abb-888b-4179-bf67-abbc910b41b2)
+![Screenshot 2023-10-08 172550](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/53d98aa2-af72-4e7e-9718-8d624c83b024)
 
 Admin Dashboard
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/1b479870-455e-4581-a5cd-5d76aa963dff)
+
+![Screenshot 2023-10-08 172638](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/5b593dd9-29ce-4b2d-8bf0-162ac1aba2bb)
 
 List of Users
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/81cad820-1c40-4eb3-99f5-812259a744f9)
+![Screenshot 2023-10-08 172657](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/255ed99e-5ccb-4021-8500-beffa2560740)
 
 List of Vehicles that are rented
-![image](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/8aef1ca6-c236-4c24-90dd-2ffcd96da126)
+![Screenshot 2023-10-08 172740](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/2b703139-0294-4ec4-bc2c-e76de5f14811)
 
+Add a Car
+![Screenshot 2023-10-25 115333](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/6ff9049c-d339-43eb-a629-d29b38acf0f9)
 
+![Screenshot 2023-10-25 115432](https://github.com/jiedjoshua/CarRental-ManagementSystem/assets/118013854/5973bc06-2359-46a2-b01c-3ec561b7322c)
 
 
 
